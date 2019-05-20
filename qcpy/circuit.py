@@ -76,9 +76,7 @@ class Circuit(object):
 
 if __name__ == "__main__":
     test_circuit = Circuit(3)
-    #test_circuit.add_layer([gates.pauli_x])
     test_circuit.add_layer([gates.hadamard, gates.identity, gates.identity])
+    test_circuit.add_layer([gates.identity, gates.identity, gates.identity])
     test_circuit.build_unitary()
-    #test_circuit.print_unitary()
     test_circuit.run()
-    # print(utils.tensor([gates.identity, gates.hadamard]))
