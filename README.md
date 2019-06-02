@@ -1,3 +1,5 @@
+[![Build status](https://travis-ci.org/marcoradic/QCpy.svg?branch=master)](https://travis-ci.org/marcoradic)
+
 # qc.py - A Quantum Computer Simulator in Python
 
 Simplistic Simulator for a Quantum Computer using the gate-based model. 
