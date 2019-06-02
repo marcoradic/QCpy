@@ -3,8 +3,8 @@ import numpy as np
 import math, cmath
 from collections.abc import Iterable
 
-import utils
-import gates
+from qcpy import utils
+from qcpy import gates
 
 
 class Circuit(object):
@@ -20,7 +20,11 @@ class Circuit(object):
         """ 
             Initialize the state as a zero-qubit-vector consisting of num_qubits qubits
         """
-        self.state = utils.tensor(self.num_qubits * [np.array([1, 0])])
+        self._state = utils.tensor(self.num_qubits * [np.array([1, 0])])
+
+    @property
+    def state(self):
+        return self._state
 
     def add_layer(self, layer):
         if isinstance(layer, Iterable):
@@ -44,13 +48,13 @@ class Circuit(object):
 
     @utils.timer
     def _apply_unitary(self):
-        self.state = self.unitary @ self.state
+        self._state = self.unitary @ self._state
 
     def _print_results(self):
         probabilities = np.power(self.state, 2)
         maxlength_binary = len(bin(len(probabilities)-1)) -2
         leading_zero_pad_args = ''.join(['0', str(maxlength_binary), 'b'])
-        print('== measurement results ==')
+        print('== measurement probabilities ==')
         for i, p in enumerate(probabilities):
             binary_repr = format(i, leading_zero_pad_args)
             print(f"|{binary_repr}> {p:.5f}")

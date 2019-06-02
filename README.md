@@ -16,7 +16,7 @@ Output:
 ```
 Running Circuit
 Circuit._apply_unitary took 0.00027895s
-== measurement results ==
+== measurement probabilities ==
 |000> 0.50000
 |001> 0.00000
 |010> 0.00000
